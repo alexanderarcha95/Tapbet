@@ -7,6 +7,7 @@ from starlette.requests import Request
 
 app = FastAPI()
 
+
 # Serve static files (CSS, images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
