@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.team, .scoreboard {
+    text-align: center;
+}
+
+.team {
+    position: relative;
+    max-width: 300px;
+    flex: 1;
+}
+
+.team.team1 {
+    text-align: center;
+}
+
+.team.team2 {
+    text-align: center;
+}
+
+.team img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.points, .score {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.money {
+    position: absolute;
+    width: 30px; /* Adjust the width and height */
+    height: 30px;
+    background-image: url('/static/money.png'); /* Replace with the URL of your money image */
+    background-size: contain; /* Ensure the entire image is shown */
+    background-repeat: no-repeat;
+    animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(400px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.5s;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Points</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="team team1" id="team1">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/2560px-Flag_of_France.svg.png" alt="Team 1">
+        <div class="points" id="points1">Points: 0</div>
+    </div>
+    <div class="scoreboard">
+        <div class="score" id="score">Score: 0 - 0</div>
+    </div>
+    <div class="team team2" id="team2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/2560px-Bandera_de_Espa%C3%B1a.svg.png" alt="Team 2">
+        <div class="points" id="points2">Points: 0</div>
+    </div>
+</div>
+
+<script>
+    const team1 = document.getElementById('team1');
+    const team2 = document.getElementById('team2');
+    const points1 = document.getElementById('points1');
+    const points2 = document.getElementById('points2');
+    const score = document.getElementById('score');
+    const ws = new WebSocket('ws://' + window.location.host + '/ws');
+
+    ws.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        points1.innerText = 'Points: ' + data.team1Points;
+        points2.innerText = 'Points: ' + data.team2Points;
+        score.innerText = 'Score: ' + data.team1Score + ' - ' + data.team2Score;
+    };
+
+    function createFallingMoney(team, x, y) {
+        for (let i = 0; i < 5; i++) {
+            const money = document.createElement('div');
+            money.className = 'money';
+            money.style.left = (x - team.offsetLeft) + Math.random() * 120 + 'px';
+            money.style.top = (y - team.offsetTop) + 'px';
+            money.style.animationDelay = Math.random() * 0.001 + 's';
+            money.style.animationDuration = 3 + Math.random() * 2 + 's';
+            money.style.transform = `rotate(${Math.random() * 360}deg)`;
+            team.appendChild(money);
+
+            setTimeout(() => {
+                money.remove();
+            }, 5000);
+        }
+    }
+
+    function animateImage(image) {
+        image.classList.add('bounce');
+        setTimeout(() => {
+            image.classList.remove('bounce');
+        }, 500); // Duration of the bounce animation
+    }
+
+    team1.onclick = (event) => {
+        ws.send(JSON.stringify({team: 'team1'}));
+        createFallingMoney(team1, event.clientX, event.clientY);
+        animateImage(event.target);
+    };
+
+    team2.onclick = (event) => {
+        ws.send(JSON.stringify({team: 'team2'}));
+        createFallingMoney(team2, event.clientX, event.clientY);
+        animateImage(event.target);
+    };
+</script>
+</body>
+</html>
