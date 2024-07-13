@@ -25,7 +25,8 @@
     const points1 = document.getElementById('points1');
     const points2 = document.getElementById('points2');
     const score = document.getElementById('score');
-    const ws = new WebSocket('ws://' + window.location.host + '/ws');
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(wsProtocol + '//' + window.location.host + '/ws');
 
     ws.onmessage = function(event) {
         const data = JSON.parse(event.data);
@@ -50,6 +51,7 @@
             }, 5000);
         }
     }
+
 
     function animateImage(image) {
         image.classList.add('bounce');
