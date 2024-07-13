@@ -1,8 +1,0 @@
-[build]
-  functions = "netlify/functions"
-
-[functions]
-  python_runtime = "3.11.7"  # Specify your Python version
-
-[[plugins]]
-  package = "netlify-plugin-generate-functions-manifest"
