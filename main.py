@@ -14,7 +14,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Load HTML templates
 templates = Jinja2Templates(directory="templates")
 
-
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []

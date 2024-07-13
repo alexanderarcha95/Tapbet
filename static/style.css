@@ -25,14 +25,6 @@ body {
     flex: 1;
 }
 
-.team.team1 {
-    text-align: center;
-}
-
-.team.team2 {
-    text-align: center;
-}
-
 .team img {
     max-width: 100%;
     height: auto;
@@ -46,10 +38,10 @@ body {
 
 .money {
     position: absolute;
-    width: 30px; /* Adjust the width and height */
+    width: 30px;
     height: 30px;
     background-image: url('/static/money.png'); /* Replace with the URL of your money image */
-    background-size: contain; /* Ensure the entire image is shown */
+    background-size: contain;
     background-repeat: no-repeat;
     animation: fall 4s linear infinite;
 }
