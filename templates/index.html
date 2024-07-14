@@ -34,8 +34,8 @@
 
     let tg = window.Telegram.WebApp;
     let initData = tg.initData;
-    let UserFirstName = tg.initDataUnsafe.first_name;
-    let UserLastName = tg.initDataUnsafe.last_name;
+    let UserFirstName = tg.initDataUnsafe.user.first_name;
+    let UserLastName = tg.initDataUnsafe.user.last_name;
     let user_added_points1 = document.getElementById('user_added_points1');
     let user_added_points2 = document.getElementById('user_added_points2');
 
@@ -52,8 +52,6 @@
         points1.innerText = 'Points: ' + data.team1Points;
         points2.innerText = 'Points: ' + data.team2Points;
         score.innerText = 'Score: ' + data.team1Score + ' - ' + data.team2Score;
-        user_added_points1.innerText = 'User added: ' + UserFirstName + ' ' + UserLastName;
-        user_added_points2.innerText = 'User added: ' + UserFirstName + ' ' + UserLastName;
     };
 
     tg.expand();
@@ -84,12 +82,14 @@
 
     team1.onclick = (event) => {
         ws.send(JSON.stringify({team: 'team1'}));
+        user_added_points1.innerText = 'User added: ' + UserFirstName + ' ' + UserLastName;
         createFallingMoney(team1, event.clientX, event.clientY);
         animateImage(event.target);
     };
 
     team2.onclick = (event) => {
         ws.send(JSON.stringify({team: 'team2'}));
+        user_added_points2.innerText = 'User added: ' + UserFirstName + ' ' + UserLastName;
         createFallingMoney(team2, event.clientX, event.clientY);
         animateImage(event.target);
     };
