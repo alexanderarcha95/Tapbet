@@ -29,8 +29,8 @@
 <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
-    const UserFirstName = tg.initDataUnsafe.first_name;
-    const UserLastName = tg.initDataUnsafe.last_name;
+    const UserFirstName = tg.initDataUnsafe.user.first_name;
+    const UserLastName = tg.initDataUnsafe.user.last_name;
     const user_added_points1 = document.getElementById('user_added_points1');
     const user_added_points2 = document.getElementById('user_added_points2');
 
